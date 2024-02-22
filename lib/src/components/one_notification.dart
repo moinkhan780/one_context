@@ -53,15 +53,13 @@ class OneNotification<T> extends StatefulWidget {
   /// Use it to reload the entire widget three, loose previous data of most top OneNotification found
   /// Cunrrently it recreate most top OneNotification
   static hardReloadRoot(BuildContext context) {
-    _OneNotificationState? state =
-        context.findRootAncestorStateOfType<_OneNotificationState>();
+    _OneNotificationState? state = context.findRootAncestorStateOfType<_OneNotificationState>();
     state?._hardReload();
   }
 
   /// Cunrrently it rebuild most top OneNotification
   static softReloadRoot(BuildContext context) {
-    _OneNotificationState? state =
-        context.findRootAncestorStateOfType<_OneNotificationState>();
+    _OneNotificationState? state = context.findRootAncestorStateOfType<_OneNotificationState>();
     state?._softReload();
   }
 
@@ -89,14 +87,10 @@ class _OneNotificationState<T> extends State<OneNotification<T>> {
             return widget.stopBubbling;
 
             /// Data received and try match type
-          } else if (notification.payload?.data?.runtimeType.toString() ==
-                  T.toString() ||
-              dynamic is T) {
+          } else if (notification.payload?.data?.runtimeType.toString() == T.toString() || dynamic is T) {
             _data = notification.payload?.data;
 
-            if (widget.rebuildOnData) if (notification
-                    .payload?.forceHardHeload ==
-                true)
+            if (widget.rebuildOnData) if (notification.payload?.forceHardHeload == true)
               _hardReload();
             else
               _softReload();

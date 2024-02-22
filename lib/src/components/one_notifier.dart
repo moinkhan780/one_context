@@ -5,8 +5,7 @@ class OneNotifier<T> extends Notification {
 
   OneNotifier({this.payload});
 
-  static void notify<T>(BuildContext? context,
-      [NotificationPayload<T>? payload]) {
+  static void notify<T>(BuildContext? context, [NotificationPayload<T>? payload]) {
     OneNotifier<T>(payload: payload)..dispatch(context);
   }
 }

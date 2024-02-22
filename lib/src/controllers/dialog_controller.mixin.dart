@@ -64,10 +64,9 @@ mixin DialogController {
     Offset? anchorPoint,
   })? _showModalBottomSheet;
 
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> Function(
-      SnackBar Function(BuildContext?) builder)? _showSnackBar;
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> Function(SnackBar Function(BuildContext?) builder)? _showSnackBar;
 
-  PersistentBottomSheetController<T> Function<T>({
+  PersistentBottomSheetController Function<T>({
     Widget Function(BuildContext) builder,
     Color? backgroundColor,
     double? elevation,
@@ -113,8 +112,7 @@ mixin DialogController {
   /// Removes the current [SnackBar] by running its normal exit animation.
   ///
   /// The closed completer is called after the animation is complete.
-  void hideCurrentSnackBar(
-      {SnackBarClosedReason reason = SnackBarClosedReason.hide}) async {
+  void hideCurrentSnackBar({SnackBarClosedReason reason = SnackBarClosedReason.hide}) async {
     if (!(await _contextLoaded())) return;
     ScaffoldMessenger.of(context!).hideCurrentSnackBar(reason: reason);
   }
@@ -123,15 +121,13 @@ mixin DialogController {
   ///
   /// The removed snack bar does not run its normal exit animation. If there are
   /// any queued snack bars, they begin their entrance animation immediately.
-  void removeCurrentSnackBar(
-      {SnackBarClosedReason reason = SnackBarClosedReason.hide}) async {
+  void removeCurrentSnackBar({SnackBarClosedReason reason = SnackBarClosedReason.hide}) async {
     if (!(await _contextLoaded())) return;
     ScaffoldMessenger.of(context!).removeCurrentSnackBar(reason: reason);
   }
 
   /// Shows a [SnackBar] at the bottom of the scaffold.
-  Future<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>?>
-      showSnackBar({required SnackBar Function(BuildContext?) builder}) async {
+  Future<ScaffoldFeatureController<SnackBar, SnackBarClosedReason>?> showSnackBar({required SnackBar Function(BuildContext?) builder}) async {
     if (!(await _contextLoaded())) return null;
     return _showSnackBar!(builder);
   }
@@ -186,7 +182,7 @@ mixin DialogController {
   ///
   /// Returns a controller that can be used to close and otherwise manipulate the
   /// bottom sheet.
-  Future<PersistentBottomSheetController<T>?> showBottomSheet<T>({
+  Future<PersistentBottomSheetController?> showBottomSheet<T>({
     required Widget Function(BuildContext) builder,
     Color? backgroundColor,
     double? elevation,
@@ -220,8 +216,7 @@ mixin DialogController {
         bool useSafeArea,
         RouteSettings? routeSettings,
         Offset? anchorPoint,
-      })?
-          showDialog,
+      })? showDialog,
       Future<T?> Function<T>({
         required Widget Function(BuildContext) builder,
         Color? backgroundColor,
@@ -237,12 +232,9 @@ mixin DialogController {
         RouteSettings? routeSettings,
         AnimationController? transitionAnimationController,
         Offset? anchorPoint,
-      })?
-          showModalBottomSheet,
-      ScaffoldFeatureController<SnackBar, SnackBarClosedReason> Function(
-              SnackBar Function(BuildContext?) builder)?
-          showSnackBar,
-      PersistentBottomSheetController<T> Function<T>({
+      })? showModalBottomSheet,
+      ScaffoldFeatureController<SnackBar, SnackBarClosedReason> Function(SnackBar Function(BuildContext?) builder)? showSnackBar,
+      PersistentBottomSheetController Function<T>({
         Widget Function(BuildContext)? builder,
         Color? backgroundColor,
         double? elevation,
@@ -251,8 +243,7 @@ mixin DialogController {
         BoxConstraints? constraints,
         bool? enableDrag,
         AnimationController? transitionAnimationController,
-      })?
-          showBottomSheet}) {
+      })? showBottomSheet}) {
     _showDialog = showDialog;
     _showSnackBar = showSnackBar;
     _showModalBottomSheet = showModalBottomSheet;

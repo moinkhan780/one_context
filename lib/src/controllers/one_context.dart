@@ -44,9 +44,7 @@ class OneContext with NavigatorController, OverlayController, DialogController {
   late OneNotificationController oneNotifier;
   late OneThemeController oneTheme;
 
-  HeroController heroController = HeroController(
-      createRectTween: (begin, end) =>
-          MaterialRectCenterArcTween(begin: begin, end: end));
+  HeroController heroController = HeroController(createRectTween: (begin, end) => MaterialRectCenterArcTween(begin: begin, end: end));
 
   OneContext._private() {
     oneNotifier = OneNotificationController();
@@ -67,8 +65,7 @@ class OneContext with NavigatorController, OverlayController, DialogController {
       bool useSafeArea,
       RouteSettings? routeSettings,
       Offset? anchorPoint,
-    })?
-        showDialog,
+    })? showDialog,
     Future<T?> Function<T>({
       required Widget Function(BuildContext) builder,
       Color? backgroundColor,
@@ -84,12 +81,9 @@ class OneContext with NavigatorController, OverlayController, DialogController {
       RouteSettings? routeSettings,
       AnimationController? transitionAnimationController,
       Offset? anchorPoint,
-    })?
-        showModalBottomSheet,
-    ScaffoldFeatureController<SnackBar, SnackBarClosedReason> Function(
-            SnackBar Function(BuildContext?) builder)?
-        showSnackBar,
-    PersistentBottomSheetController<T> Function<T>({
+    })? showModalBottomSheet,
+    ScaffoldFeatureController<SnackBar, SnackBarClosedReason> Function(SnackBar Function(BuildContext?) builder)? showSnackBar,
+    PersistentBottomSheetController Function<T>({
       Widget Function(BuildContext)? builder,
       Color? backgroundColor,
       double? elevation,
@@ -98,14 +92,10 @@ class OneContext with NavigatorController, OverlayController, DialogController {
       BoxConstraints? constraints,
       bool? enableDrag,
       AnimationController? transitionAnimationController,
-    })?
-        showBottomSheet,
+    })? showBottomSheet,
   }) {
     registerCallback(
-        showDialog: showDialog,
-        showSnackBar: showSnackBar,
-        showModalBottomSheet: showModalBottomSheet,
-        showBottomSheet: showBottomSheet);
+        showDialog: showDialog, showSnackBar: showSnackBar, showModalBottomSheet: showModalBottomSheet, showBottomSheet: showBottomSheet);
   }
 
   /// Use [OneContext().builder] in MaterialApp builder,

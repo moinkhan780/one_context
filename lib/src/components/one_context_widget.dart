@@ -13,10 +13,7 @@ class _OneContextWidgetState extends State<OneContextWidget> {
   void initState() {
     super.initState();
     OneContext().registerDialogCallback(
-        showDialog: _showDialog,
-        showSnackBar: _showSnackBar,
-        showModalBottomSheet: _showModalBottomSheet,
-        showBottomSheet: _showBottomSheet);
+        showDialog: _showDialog, showSnackBar: _showSnackBar, showModalBottomSheet: _showModalBottomSheet, showBottomSheet: _showBottomSheet);
     BackButtonInterceptor.add(myInterceptor);
   }
 
@@ -69,10 +66,8 @@ class _OneContextWidgetState extends State<OneContextWidget> {
         anchorPoint: anchorPoint,
       );
 
-  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> _showSnackBar(
-          SnackBar Function(BuildContext?) builder) =>
-      ScaffoldMessenger.of(OneContext().context!)
-          .showSnackBar(builder(OneContext().context));
+  ScaffoldFeatureController<SnackBar, SnackBarClosedReason> _showSnackBar(SnackBar Function(BuildContext?) builder) =>
+      ScaffoldMessenger.of(OneContext().context!).showSnackBar(builder(OneContext().context));
 
   Future<T?> _showModalBottomSheet<T>({
     required Widget Function(BuildContext) builder,
@@ -109,7 +104,7 @@ class _OneContextWidgetState extends State<OneContextWidget> {
     );
   }
 
-  PersistentBottomSheetController<T> _showBottomSheet<T>({
+  PersistentBottomSheetController _showBottomSheet<T>({
     Widget Function(BuildContext)? builder,
     Color? backgroundColor,
     double? elevation,
@@ -119,7 +114,7 @@ class _OneContextWidgetState extends State<OneContextWidget> {
     bool? enableDrag,
     AnimationController? transitionAnimationController,
   }) {
-    return showBottomSheet<T>(
+    return showBottomSheet(
       context: OneContext().context!,
       builder: builder!,
       backgroundColor: backgroundColor,
